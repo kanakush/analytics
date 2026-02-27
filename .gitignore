@@ -1,0 +1,29 @@
+# --- Секреты (уже есть у тебя) ---
+.env
+.streamlit/secrets.toml
+
+# --- Python (улучшено) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.venv
+env/
+venv/
+ENV/
+
+# --- Файлы данных (новое) ---
+# Игнорируем выгруженные отчеты, чтобы не захламлять репозиторий
+*.xlsx
+*.csv
+*.log
+
+# --- IDE / Редакторы (новое) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Docker (опционально) ---
+.dockerignore

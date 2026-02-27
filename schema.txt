@@ -1,0 +1,6 @@
+IT-ticket/
+├── .env                <-- Секретный файл (НЕ пушить в GitHub)
+├── .gitignore          <-- Здесь прописано слово ".env"
+├── main.py              <-- Главный файл Streamlit
+├── database_module.py  <-- Здесь читаем через os.getenv()
+└── requirements.txt

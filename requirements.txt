@@ -1,0 +1,10 @@
+streamlit
+pandas
+plotly
+oracledb
+openpyxl
+dotenv
+sqlalchemy
+psutil
+Jinja2
+xlsxwriter
