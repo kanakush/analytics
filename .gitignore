@@ -1,8 +1,21 @@
+# Секреты
 .env
+.streamlit/secrets.toml
+
+# Виртуальное окружение (ОБЯЗАТЕЛЬНО)
+.venv/
+venv/
+ENV/
+
+# Настройки IDE (PyCharm / VS Code)
+.idea/
+.vscode/
+
+# Кэш Python
 __pycache__/
 *.pyc
-.streamlit/secrets.toml
-lib/
-packages/
-*.whl
+
+# Данные и отчеты
 *.xlsx
+*.csv
+*.log
