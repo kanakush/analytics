@@ -19,3 +19,7 @@ __pycache__/
 *.xlsx
 *.csv
 *.log
+
+lib/
+packages/
+*.whl
