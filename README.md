@@ -5,7 +5,7 @@ A high-performance analytical dashboard designed for monitoring and classifying 
 
 🌟 Key Features
 Role-Based Access Control (RBAC): Secure login system with distinct permissions for admin and user roles.
-Automated Root Cause Analysis: Dynamic classification of tickets (e.g., Nexign, MNP, IMEI, Superapp) using custom mapping logic.
+Automated Root Cause Analysis: Dynamic classification of tickets using custom mapping logic.
 Advanced Visualizations: Interactive Plotly charts showing ticket volume trends, closure rates, and period-over-period growth indicators.
 Memory-Aware Caching: Integrated psutil monitoring to prevent Out-Of-Memory (OOM) errors by clearing the Streamlit cache when RAM usage exceeds 90%.
 Professional Reporting: One-click generation of formatted Excel reports (Analytics + Raw Data) using xlsxwriter.
