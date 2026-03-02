@@ -1,6 +1,8 @@
 Analytics Report Dashboard
 A high-performance analytical dashboard designed for monitoring and classifying L2 technical support tickets. This application connects to an Oracle Database, applies custom Root Cause mapping rules, and provides real-time visualization of support trends.
 
+![Dashboard Screen](screenshots/main_view.png)
+
 🌟 Key Features
 Role-Based Access Control (RBAC): Secure login system with distinct permissions for admin and user roles.
 Automated Root Cause Analysis: Dynamic classification of tickets (e.g., Nexign, MNP, IMEI, Superapp) using custom mapping logic.
@@ -43,11 +45,13 @@ USER_PWD=dashboard_user_password
 2. Running with Docker (Recommended)
 Build and start the application in a detached mode:
 
+3. Add your SELECT on database_module.py 
+
 Bash
 docker-compose up -d --build
 The app will be accessible at http://your-server-ip:8501.
 
-3. Manual Local Installation
+4. Manual Local Installation
 If you prefer to run it without Docker:
 
 Install the required packages:

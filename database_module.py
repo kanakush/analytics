@@ -44,8 +44,38 @@ def get_detailed_report(start_date, end_date):
     e_date = end_date.strftime('%Y-%m-%d') + " 23:59:59"
 
     query = f"""
-    SELECT 
-    here your script
+    SELECT /*+parallel (8)*/ 
+        l.id_ticket as "ID_TICKET", 
+        l.msisdn as "MSISDN",
+        l.created_user as "CREATED_USER", 
+        l.creater_usergroup as "CREATER_USERGROUP", 
+        l.subject_name as "SUBJECT_NAME", 
+        l.product_name as "PRODUCT_NAME",  
+        TO_CHAR(l.CREATED_DATE, 'DD.MM.YYYY HH24:MI') as "TICKET_CREATED", 
+        TO_CHAR(l.CLOSED_DATE, 'DD.MM.YYYY HH24:MI') as "TICKET_CLOSED",
+        MAX(f.FIELD_VALS) as "TEH" 
+    FROM 
+        APP_PQSWEB.VWI_BT_RT_LIST l
+    JOIN 
+        APP_PQSWEB.VWI_BT_TICKET_FIELDS f ON l.ID_TICKET = f.id_ticket
+    JOIN 
+        APP_PQSWEB.VWI_BT_TICKET_ACTIVITY a ON l.ID_TICKET = a.id_ticket
+    WHERE 
+        l.created_date BETWEEN TO_DATE('{s_date}', 'YYYY-MM-DD HH24:MI:SS') 
+                           AND TO_DATE('{e_date}', 'YYYY-MM-DD HH24:MI:SS')
+        AND f.ID_FIELD = 456
+        AND UPPER(a.group_name) LIKE '%L2%'
+    GROUP BY 
+        l.id_ticket, 
+        l.msisdn, 
+        l.created_user, 
+        l.creater_usergroup, 
+        l.subject_name, 
+        l.product_name, 
+        l.CREATED_DATE, 
+        l.CLOSED_DATE
+    ORDER BY 
+        l.CREATED_DATE DESC
     """
 
     try:

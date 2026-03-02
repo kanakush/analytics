@@ -7,7 +7,7 @@
 venv/
 ENV/
 
-# Настройки IDE (PyCharm / VS Code)
+# Настройки IDE (PyCharm )
 .idea/
 .vscode/
 
@@ -19,7 +19,3 @@ __pycache__/
 *.xlsx
 *.csv
 *.log
-
-lib/
-packages/
-*.whl
