@@ -133,17 +133,16 @@ if check_auth():
         if not df_unique.empty:
             delta_days = (end_dt - start_dt).days
 
-            if delta_days <= 7:
+            if delta_days <= 31:
                 freq, d_fmt, grid_step = 'D', "%d.%m", 86400000
             elif delta_days <= 31:
-                freq, d_fmt, grid_step = 'D', "%d.%m", 86400000
-            elif delta_days <= 180:
-                freq, d_fmt, grid_step = 'W-MON', "W%V<br>%d.%m", 7 * 86400000
+                freq, d_fmt, grid_step = 'D', "%d.%m", 86400000 * 2 
             else:
                 freq, d_fmt, grid_step = 'MS', "%b %Y", "M1"
 
             df_trend = df_unique.copy().set_index('DT_OBJ')
 
+            # Ресемплинг данных
             resampled_total = df_trend.resample(freq, label='left')['ID_TICKET'].count()
             resampled_closed = df_trend[df_trend['TICKET_CLOSED'].notna()].resample(freq, label='left')[
                 'ID_TICKET'].count()
@@ -183,21 +182,29 @@ if check_auth():
                 x=daily_stats['DT_OBJ'], y=daily_stats['Закрыто'],
                 mode=chart_mode, name='Закрыто',
                 line=dict(color='#2ca02c', dash='dot'),
-                text=daily_stats['Закрыто'].astype(int), textposition="bottom center"
+                text=daily_stats['Закрыто'].astype(int).apply(lambda x: x if x > 0 else ""),
+                textposition="bottom center"
             ))
 
             fig.add_trace(go.Scatter(
                 x=daily_stats['DT_OBJ'], y=daily_stats['В_работе'],
                 mode=chart_mode, name='В работе',
                 line=dict(color='#d62728'),
-                text=daily_stats['В_работе'].astype(int), textposition="middle right"
+                text=daily_stats['В_работе'].astype(int).apply(lambda x: x if x > 0 else ""),
+                textposition="middle right"
             ))
 
             fig.update_layout(
-                xaxis=dict(type='date', tickformat=d_fmt,
-                           tickmode='auto' if delta_days <= 7 else 'linear',
-                           dtick=grid_step, automargin=True),
-                hovermode="x unified", height=550,
+                xaxis=dict(
+                    type='date',
+                    tickformat=d_fmt,
+                    # Если дней много, используем автоматический расчет меток, чтобы они не налезали друг на друга
+                    tickmode='auto' if delta_days > 31 else 'linear',
+                    dtick=grid_step if delta_days <= 31 else None,
+                    automargin=True
+                ),
+                hovermode="x unified",
+                height=550,
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
                 margin=dict(t=100, l=40, r=40, b=40)
             )
