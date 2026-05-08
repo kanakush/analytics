@@ -1,7 +1,6 @@
 Analytics Report Dashboard
 A high-performance analytical dashboard designed for monitoring and classifying L2 technical support tickets. This application connects to an Oracle Database, applies custom Root Cause mapping rules, and provides real-time visualization of support trends.
-
-![Dashboard Screen](screenshots/main_view.png)
+![Schem](screenshots/DRA.png)
 
 🌟 Key Features
 Role-Based Access Control (RBAC): Secure login system with distinct permissions for admin and user roles.
@@ -10,6 +9,7 @@ Advanced Visualizations: Interactive Plotly charts showing ticket volume trends,
 Memory-Aware Caching: Integrated psutil monitoring to prevent Out-Of-Memory (OOM) errors by clearing the Streamlit cache when RAM usage exceeds 90%.
 Professional Reporting: One-click generation of formatted Excel reports (Analytics + Raw Data) using xlsxwriter.
 Dockerized Deployment: Fully containerized environment for consistent deployment across different servers.
+![Dashboard Screen](screenshots/main_view.png)
 
 🏗 Project Structure
 Plaintext
